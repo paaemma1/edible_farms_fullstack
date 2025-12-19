@@ -57,8 +57,8 @@ if (orderForm) {
       if (data.success) {
         showResult('order-result','Order received — we will call to confirm.');
         orderForm.reset();
-        document.getElementById('o-phone').value = '+233546600063';
-        document.getElementById('o-type').value = 'A';
+        document.getElementById('o-phone').value = '';
+        document.getElementById('o-type').value = '';
       } else showResult('order-result','Failed to submit order',false);
     } catch(err) {
       console.error(err);
@@ -73,7 +73,8 @@ if (orderNow) {
   orderNow.addEventListener('click', (e)=>{
     e.preventDefault();
     const typ = document.getElementById('o-type');
-    if (typ) typ.value = 'A';
+    if (typ) typ.value = '';
     window.location.hash = '#order';
   });
 }
+
