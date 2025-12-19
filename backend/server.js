@@ -27,54 +27,19 @@ app.get("/", (req, res) => {
 ===================== */
 
 // Receive order
-app.post("/api/order", async (req, res) => {
-  const { name, phone, type, qty, address } = req.body;
-
-  try {
-    await transporter.sendMail({
-      from: `"Edible Farms" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: "🛒 New Order Received",
-      html: `
-        <h2>New Order</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Type:</strong> ${type}</p>
-        <p><strong>Quantity:</strong> ${qty}</p>
-        <p><strong>Address:</strong> ${address}</p>
-      `
-    });
-
-    res.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false });
-  }
+app.post("/api/order", (req, res) => {
+  orders.push(req.body);
+  console.log("New Order:", req.body);
+  res.json({ success: true, message: "Order received!" });
 });
 
-// Receive Inquiry
-app.post("/api/inquiry", async (req, res) => {
-  const { name, email, message } = req.body;
-
-  try {
-    await transporter.sendMail({
-      from: `"Edible Farms" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
-      subject: "📩 New Inquiry",
-      html: `
-        <h2>New Inquiry</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong><br>${message}</p>
-      `
-    });
-
-    res.json({ success: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false });
-  }
+// Receive inquiry
+app.post("/api/inquiry", (req, res) => {
+  inquiries.push(req.body);
+  console.log("New Inquiry:", req.body);
+  res.json({ success: true, message: "Inquiry submitted!" });
 });
+
 /* =====================
    ADMIN ENDPOINTS
 ===================== */
