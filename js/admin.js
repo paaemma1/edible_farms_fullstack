@@ -1,5 +1,28 @@
 const API = window.EDIBLE_FARMS_CONFIG.API_BASE;
 
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "edible123"; // you can change this later
+
+const loginBtn = document.getElementById("login-btn");
+const loginResult = document.getElementById("login-result");
+const adminPanel = document.getElementById("admin-panel");
+
+loginBtn.addEventListener("click", () => {
+  const user = document.getElementById("admin-user").value;
+  const pass = document.getElementById("admin-pass").value;
+
+  if (user === ADMIN_USER && pass === ADMIN_PASS) {
+    loginResult.textContent = "Login successful";
+    loginResult.style.color = "green";
+
+    adminPanel.style.display = "block";
+    document.querySelector(".container").style.display = "none";
+  } else {
+    loginResult.textContent = "Wrong username or password";
+    loginResult.style.color = "crimson";
+  }
+});
+
 // Load orders
 async function loadOrders() {
   try {
@@ -48,3 +71,4 @@ async function loadMessages() {
 
 loadOrders();
 loadMessages();
+
