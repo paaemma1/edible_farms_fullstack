@@ -10,8 +10,8 @@ app.use(express.json());
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "YOUR_EMAIL@gmail.com",      // 👈 your gmail
-    pass: "YOUR_APP_PASSWORD"          // 👈 app password
+    user: "oduroe010@gmail.com",      // 👈 your gmail
+    pass: "#Arrangements123"          // 👈 app password
   }
 });
 
