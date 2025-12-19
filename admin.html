@@ -4,60 +4,47 @@
   <meta charset="utf-8">
   <title>Edible Farms Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Reuse your main styles -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- LOGIN SECTION -->
-  <h2 style="text-align:center;margin-top:40px;">Admin Login</h2>
+<h2 style="text-align:center;margin-top:40px;">Admin Login</h2>
 
-  <div class="container" style="max-width:400px;margin:auto;">
-    
-    <label>Username</label>
-    <input type="text" id="admin-user" class="input" placeholder="admin">
+<div class="container" id="login-box" style="max-width:400px;margin:auto;">
+  <label>Username</label>
+  <input type="text" id="admin-user" class="input" placeholder="admin">
 
-    <label>Password</label>
-    <input type="password" id="admin-pass" class="input" placeholder="password">
+  <label>Password</label>
+  <input type="password" id="admin-pass" class="input" placeholder="edible123">
 
-    <button class="btn" id="login-btn">Login</button>
+  <button class="btn" id="login-btn">Login</button>
+  <p id="login-result" class="result"></p>
+</div>
 
-    <p id="login-result" class="result"></p>
-  </div>
+<div id="admin-panel" style="display:none; padding:20px;">
+  <h2>Admin Dashboard</h2>
 
-  <!-- DASHBOARD SECTION -->
-  <div id="admin-panel" style="display:none; padding:20px;">
-    <h2>Admin Dashboard</h2>
+  <h3>Orders</h3>
+  <table id="orders-table" border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th><th>Phone</th><th>Type</th><th>Qty</th><th>Address</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-    <h3>Orders</h3>
-    <table id="orders-table" border="1" cellspacing="0" cellpadding="8" width="100%">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Type</th>
-          <th>Qty</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <h3 style="margin-top:40px;">Inquiries</h3>
+  <table id="inq-table" border="1" width="100%">
+    <thead>
+      <tr>
+        <th>Name</th><th>Email</th><th>Message</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
 
-    <h3 style="margin-top:40px;">Inquiries</h3>
-    <table id="inq-table" border="1" cellspacing="0" cellpadding="8" width="100%">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
-
-  <!-- Admin logic -->
-  <script src="js/admin.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>
