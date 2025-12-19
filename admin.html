@@ -2,23 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <title>Edible Farms Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Panel — Edible Farms</title>
+
+  <!-- Reuse your main styles -->
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    body { padding: 40px; background:#f5f5f5; }
-    .admin-box { background:#fff; padding:20px; border-radius:10px; }
-    table { width:100%; border-collapse: collapse; margin-top:20px; }
-    table th, table td { padding:10px; border-bottom:1px solid #ddd; }
-    h1 { margin-bottom:20px; }
-  </style>
 </head>
 <body>
-  <div class="admin-box">
-    <h1>Admin Dashboard</h1>
 
-    <h2>Orders</h2>
-    <table id="orders-table">
+  <!-- LOGIN SECTION -->
+  <h2 style="text-align:center;margin-top:40px;">Admin Login</h2>
+
+  <div class="container" style="max-width:400px;margin:auto;">
+    
+    <label>Username</label>
+    <input type="text" id="admin-user" class="input" placeholder="admin">
+
+    <label>Password</label>
+    <input type="password" id="admin-pass" class="input" placeholder="password">
+
+    <button class="btn" id="login-btn">Login</button>
+
+    <p id="login-result" class="result"></p>
+  </div>
+
+  <!-- DASHBOARD SECTION -->
+  <div id="admin-panel" style="display:none; padding:20px;">
+    <h2>Admin Dashboard</h2>
+
+    <h3>Orders</h3>
+    <table id="orders-table" border="1" cellspacing="0" cellpadding="8" width="100%">
       <thead>
         <tr>
           <th>Name</th>
@@ -26,30 +39,25 @@
           <th>Type</th>
           <th>Qty</th>
           <th>Address</th>
-          <th>Date</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
 
-    <h2>Contact Messages</h2>
-    <table id="messages-table">
+    <h3 style="margin-top:40px;">Inquiries</h3>
+    <table id="inq-table" border="1" cellspacing="0" cellpadding="8" width="100%">
       <thead>
         <tr>
           <th>Name</th>
           <th>Email</th>
           <th>Message</th>
-          <th>Date</th>
         </tr>
       </thead>
       <tbody></tbody>
     </table>
-
   </div>
 
-  <script>
-    window.EDIBLE_FARMS_CONFIG = {"API_BASE":"https://edible-farms-fullstack.onrender.com"};
-  </script>
+  <!-- Admin logic -->
   <script src="js/admin.js"></script>
 </body>
 </html>
