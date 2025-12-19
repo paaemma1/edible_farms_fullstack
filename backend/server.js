@@ -5,53 +5,48 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// --- TEMP STORAGE (in-memory) ---
-let orders = [];
-let inquiries = [];
+// TEMP storage (important)
+const orders = [];
+const inquiries = [];
 
-// --- ROOT ---
+// Health check
 app.get("/", (req, res) => {
   res.json({ status: "OK", service: "Edible Farms API" });
 });
 
-// --- CREATE ORDER ---
+// CUSTOMER ROUTES
 app.post("/api/order", (req, res) => {
-  const newOrder = {
-    id: orders.length + 1,
+  const order = {
+    id: Date.now(),
     ...req.body,
-    time: new Date().toISOString()
+    createdAt: new Date().toISOString()
   };
-
-  orders.push(newOrder);
-  console.log("New Order:", newOrder);
-
-  res.json({ success: true, message: "Order received!" });
+  orders.push(order);
+  console.log("New Order:", order);
+  res.json({ success: true });
 });
 
-// --- CREATE INQUIRY ---
 app.post("/api/inquiry", (req, res) => {
-  const newInquiry = {
-    id: inquiries.length + 1,
+  const inquiry = {
+    id: Date.now(),
     ...req.body,
-    time: new Date().toISOString()
+    createdAt: new Date().toISOString()
   };
-
-  inquiries.push(newInquiry);
-  console.log("New Inquiry:", newInquiry);
-
-  res.json({ success: true, message: "Inquiry submitted!" });
+  inquiries.push(inquiry);
+  console.log("New Inquiry:", inquiry);
+  res.json({ success: true });
 });
 
-// --- ADMIN: GET ALL ORDERS ---
+// 🔐 ADMIN ROUTES
 app.get("/api/admin/orders", (req, res) => {
-  res.json({ success: true, data: orders });
+  res.json(orders);
 });
 
-// --- ADMIN: GET ALL INQUIRIES ---
 app.get("/api/admin/inquiries", (req, res) => {
-  res.json({ success: true, data: inquiries });
+  res.json(inquiries);
 });
 
-// Server start
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log("API running on port", PORT));
+app.listen(PORT, () =>
+  console.log("API running on port", PORT)
+);
